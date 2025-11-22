@@ -3,6 +3,7 @@ package br.com.fiap.CareerPath.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "T_CP_PROFISSIONAL_HABILIDADE")
 public class ProfissionalHabilidade {
 
     @Id

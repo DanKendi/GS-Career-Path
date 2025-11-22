@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "EasyAccess",
-                description = "API EasyAccess v2"
+                title = "CareerPath",
+                description = "API CareerPath 1.0"
         ),
         servers = {@Server(url = "http://localhost:8080",description = "LOCAL"),}
 )

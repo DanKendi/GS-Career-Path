@@ -22,14 +22,14 @@ public class ProfissionalHabilidadeController {
 
     @PostMapping
     public ResponseEntity<Void> criar(@RequestBody ProfissionalHabilidadeRequestDTO requestDTO){
-        profissionalHabilidadeService.salvarRecomendacao(requestDTO);
+        profissionalHabilidadeService.salvar(requestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualizar(@PathVariable Integer id, @RequestBody ProfissionalHabilidadeRequestDTO requestDTO){
         try{
-            profissionalHabilidadeService.update(id, requestDTO);
+            profissionalHabilidadeService.updatePH(id, requestDTO);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e){
             return ResponseEntity.notFound().build();

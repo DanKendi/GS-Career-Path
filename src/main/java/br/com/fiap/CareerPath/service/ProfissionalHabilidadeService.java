@@ -24,10 +24,10 @@ public class ProfissionalHabilidadeService {
     private ProfissionalHabilidadeRepository repository;
 
     @Transactional
-    public void salvarRecomendacao(ProfissionalHabilidadeRequestDTO requestDTO){
+    public void salvar(ProfissionalHabilidadeRequestDTO requestDTO){
         Integer proximodId = buscarProximoId();
         Query query = entityManager.createNativeQuery(
-                "CALL SP_INS_PROFISSIONAL_HABILIDADE(id_profissional_habilidade, :id_profissional, id_habilidade, :nivel_atual)"
+                "CALL SP_INS_PROFISSIONAL_HABILIDADE(:id_profissional_habilidade, :id_profissional, :id_habilidade, :nivel_atual)"
         );
         query.setParameter("id_profissional_habilidade", proximodId);
         query.setParameter("id_profissional", requestDTO.getProfissionalId());
@@ -41,13 +41,12 @@ public class ProfissionalHabilidadeService {
     }
 
     @Transactional
-    public void update(Integer id, ProfissionalHabilidadeRequestDTO requestDTO){
-        Query query = entityManager.createNativeQuery(
-                "CALL SP_UPD_PROFISSIONAL_HABILIDADE(:id_profissional_habilidade, :id_profissional, id_habilidade, :nivel_atual)"
-        );
+    public void updatePH(Integer id, ProfissionalHabilidadeRequestDTO requestDTO){
+        Query query = entityManager.createNativeQuery("CALL SP_UPD_PROFISSIONAL_HABILIDADE(:id_profissional_habilidade, :id_profissional, :id_habilidade, :nivel_atual)");
+        query.setParameter("id_profissional_habilidade", id);
         query.setParameter("id_profissional", requestDTO.getProfissionalId());
         query.setParameter("id_habilidade", requestDTO.getHabilidadeId());
-        query.setParameter("justificativa", requestDTO.getNivelAtual());
+        query.setParameter("nivel_atual", requestDTO.getNivelAtual());
         query.executeUpdate();
     }
 

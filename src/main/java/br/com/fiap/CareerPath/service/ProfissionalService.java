@@ -50,7 +50,7 @@ public class ProfissionalService {
 
     @Transactional
     public void deletar(Integer id){
-        Query query = entityManager.createNativeQuery("CALL SP_DEL_PROFISSIONAL(:id_profissional");
+        Query query = entityManager.createNativeQuery("CALL SP_DEL_PROFISSIONAL(:id_profissional)");
         query.setParameter("id_profissional", id);
         query.executeUpdate();
     }

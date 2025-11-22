@@ -29,6 +29,6 @@ public interface ProfissionalRepository extends JpaRepository<Profissional, Inte
 
     @Modifying
     @Transactional
-    @Query(value = "CALL SP_DEL_PROFISSIONAL(:id_profissional", nativeQuery = true)
+    @Query(value = "CALL SP_DEL_PROFISSIONAL(:id_profissional)", nativeQuery = true)
     void deletarProfissional(@Param("id_profissional") Integer id_profissional);
 }

@@ -48,7 +48,7 @@ public class HabilidadeService {
 
     @Transactional
     public void deletar(Integer id){
-        Query query = entityManager.createNativeQuery("CALL SP_UPD_HABILIDADE(:id_habilidade)");
+        Query query = entityManager.createNativeQuery("CALL SP_DEL_HABILIDADE(:id_habilidade)");
         query.setParameter("id_habilidade", id);
         query.executeUpdate();
     }

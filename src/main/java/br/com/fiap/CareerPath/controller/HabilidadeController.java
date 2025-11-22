@@ -29,7 +29,7 @@ public class HabilidadeController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Void> atualizarHabilidade(@PathVariable Integer id, @RequestBody HabilidadeRequestDTO requestDTO){
         try{
             habilidadeService.update(id, requestDTO);
