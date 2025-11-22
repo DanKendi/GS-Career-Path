@@ -16,4 +16,4 @@ RUN ./gradlew clean build -x test
 EXPOSE 8080
 
 # Comando de execução
-ENTRYPOINT ["java", "-jar", "build/libs/Wellsess-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "build/libs/CareerPath-0.0.1-SNAPSHOT.jar"]
