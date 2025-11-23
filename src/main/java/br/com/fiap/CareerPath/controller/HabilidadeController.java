@@ -4,6 +4,9 @@ import br.com.fiap.CareerPath.controller.dto.HabilidadeRequestDTO;
 import br.com.fiap.CareerPath.controller.dto.HabilidadeResponseDTO;
 import br.com.fiap.CareerPath.service.HabilidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +19,18 @@ public class HabilidadeController {
     @Autowired
     private HabilidadeService habilidadeService;
 
-    @GetMapping
+    @GetMapping("/todas")
     public List<HabilidadeResponseDTO> listarTodasHabilidades() {return habilidadeService.buscarTodos();}
+
+    @GetMapping("/nome")
+    public ResponseEntity<Page<HabilidadeResponseDTO>> findByNome(
+            @RequestParam String nome,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<HabilidadeResponseDTO> habilidade = habilidadeService.findByNome(nome, pageable);
+        return ResponseEntity.ok(habilidade);
+    }
 
     @PostMapping
     public ResponseEntity<Void> criarHabilidade(@RequestBody HabilidadeRequestDTO requestDTO){

@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class ProfissionalService {
 
     @Autowired
     private ProfissionalRepository repository;
+
+    public Page<ProfissionalResponseDTO> findByNome(String nome, Pageable pageable){
+        return repository.findByNomeContainingIgnoreCase(nome, pageable)
+                .map(this::toProfissionalRespDTO);
+    }
 
     @Transactional
     public void salvarProfissional(ProfissionalRequestDTO request){
@@ -54,7 +61,6 @@ public class ProfissionalService {
         query.setParameter("id_profissional", id);
         query.executeUpdate();
     }
-
 
 
     private ProfissionalResponseDTO toProfissionalRespDTO(Profissional profissional){

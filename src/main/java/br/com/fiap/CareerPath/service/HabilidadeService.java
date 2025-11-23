@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class HabilidadeService {
 
     @Autowired
     private HabilidadeRepository repository;
+
+    public Page<HabilidadeResponseDTO> findByNome(String nome, Pageable pageable){
+        return repository.findByNomeContainingIgnoreCase(nome, pageable)
+                .map(this::toRespDTO);
+    }
 
     @Transactional
     public void salvarHabilidade(HabilidadeRequestDTO requestDTO){

@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ProfissionalHabilidadeRepository extends JpaRepository<ProfissionalHabilidade, Integer> {
+
+
     @Modifying
     @Transactional
     @Query(value = "CALL SP_INS_PROFISSIONAL_HABILIDADE(:id_profissional_habilidade, :id_profissional, :id_habilidade, :nivel_atual)", nativeQuery = true)

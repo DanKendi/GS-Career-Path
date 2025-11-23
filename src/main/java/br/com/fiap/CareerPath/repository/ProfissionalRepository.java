@@ -2,12 +2,16 @@ package br.com.fiap.CareerPath.repository;
 
 import br.com.fiap.CareerPath.entity.Profissional;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ProfissionalRepository extends JpaRepository<Profissional, Integer> {
+
+    Page<Profissional> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 
     @Modifying
     @Transactional

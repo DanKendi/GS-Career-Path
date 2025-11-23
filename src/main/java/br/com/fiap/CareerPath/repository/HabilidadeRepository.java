@@ -2,12 +2,17 @@ package br.com.fiap.CareerPath.repository;
 
 import br.com.fiap.CareerPath.entity.Habilidade;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface HabilidadeRepository extends JpaRepository<Habilidade, Integer> {
+
+    Page<Habilidade> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+
     @Modifying
     @Transactional
     @Query(value = "CALL SP_INS_HABILIDADE(:id_habilidade, :nome, :nivel_necessario)", nativeQuery = true)
