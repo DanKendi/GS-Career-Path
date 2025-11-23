@@ -1,6 +1,6 @@
 # CareerPath
 
-Projeto Spring Boot para gerenciar profissionais e habilidades (API REST).
+API de Gerenciamento de Habilidades Digitais (Skills Manager).
 
 ## Tecnologias
 
